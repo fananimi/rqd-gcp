@@ -1,0 +1,4 @@
+[submodule "OpenCue"]
+	path = OpenCue
+	url = https://github.com/AcademySoftwareFoundation/OpenCue.git
+	branch = master
