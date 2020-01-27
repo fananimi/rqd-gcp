@@ -8,7 +8,7 @@ RUN echo "starting build rqd client for Google Cloud Platform"
 # --------------------------------------------------------------------
 # COPY RQD BASE DIR
 # --------------------------------------------------------------------
-COPY OpenCue /
+COPY OpenCue /OpenCue
 
 # --------------------------------------------------------------------
 # RUN apt
@@ -54,7 +54,7 @@ RUN rm blender.tar.bz2
 # --------------------------------------------------------------------
 # COMPILE proto
 # --------------------------------------------------------------------
-RUN pip install -r ./OpenCue/requirements.txt
+RUN pip install -r OpenCue/requirements.txt
 RUN python -m grpc_tools.protoc -I=OpenCue/proto --python_out=OpenCue/rqd/rqd/compiled_proto --grpc_python_out=OpenCue/rqd/rqd/compiled_proto OpenCue/proto/*.proto
 RUN python OpenCue/rqd/setup.py install
 RUN cp -R OpenCue/rqd/rqd /usr/local/lib/python2.7/dist-packages/
