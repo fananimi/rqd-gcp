@@ -9,6 +9,7 @@ RUN echo "starting build rqd client for Google Cloud Platform"
 # COPY RQD BASE DIR
 # --------------------------------------------------------------------
 COPY OpenCue /OpenCue
+COPY startup.sh /startup.sh
 
 # --------------------------------------------------------------------
 # RUN apt
@@ -21,6 +22,7 @@ RUN apt-get install \
     gnupg2 \
     python \
     python-pip \
+    nfs-common \
     libfreetype6 \
     libgl1-mesa-dev \
     libxi-dev \
@@ -66,6 +68,6 @@ RUN rm -rf OpenCue
 RUN apt-get autoremove && apt-get autoclean
 
 # --------------------------------------------------------------------
-# start rqd on container up
+# start rqd on start
 # --------------------------------------------------------------------
-ENTRYPOINT ["rqd"]
+ENTRYPOINT ["./startup.sh"]
