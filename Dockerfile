@@ -68,6 +68,9 @@ RUN rm -rf OpenCue
 RUN apt-get remove && apt-get clean
 RUN apt-get autoremove && apt-get autoclean
 
+# RQD gRPC server
+EXPOSE 8444
+
 # --------------------------------------------------------------------
 # start rqd on start
 # --------------------------------------------------------------------
