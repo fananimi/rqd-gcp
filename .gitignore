@@ -1,0 +1,13 @@
+# python
+env/
+*.pyc
+__pycache__
+
+# operating system
+tmp/
+logs/
+*.DS_Store
+
+# pycharm
+.idea
+
