@@ -6,6 +6,13 @@ FROM ubuntu:latest
 RUN echo "starting build rqd client for Google Cloud Platform"
 
 # --------------------------------------------------------------------
+# Global Environment
+# --------------------------------------------------------------------
+ENV NFS_IP localhost
+ENV NFS_DST /var/nfs/shots
+ENV NFS_SRC /shots
+
+# --------------------------------------------------------------------
 # Preparation
 # --------------------------------------------------------------------
 WORKDIR /opt/opencue
@@ -19,7 +26,7 @@ COPY OpenCue/rqd/setup.py ./rqd/
 COPY OpenCue/rqd/tests/ ./rqd/tests
 COPY OpenCue/rqd/rqd/ ./rqd/rqd
 # copy startup.sh for doker entrypoint
-COPY startup.sh /startup.sh
+COPY startup.sh ./startup.sh
 
 # --------------------------------------------------------------------
 # Install some dependencies
