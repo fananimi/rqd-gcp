@@ -79,17 +79,17 @@ RUN python3.7 -m grpc_tools.protoc \
 # <https://github.com/protocolbuffers/protobuf/issues/1491> for more info.
 RUN sed -i 's/^\(import.*_pb2\)/from . \1/' rqd/rqd/compiled_proto/*.py
 
-COPY OpenCue/rqd/setup.py ./rqd/
-COPY OpenCue/rqd/tests/ ./rqd/tests
-## Doing python test and install
-RUN cd rqd && python3.7 setup.py test
-RUN cd rqd && python3.7 setup.py install
-
 # TODO(bcipriano) Lint the code here. (Issue #78)
 COPY OpenCue/LICENSE ./
 COPY OpenCue/rqd/README.md ./rqd/
 COPY OpenCue/VERSION.in VERSIO[N] ./
 RUN test -e VERSION || echo "$(cat VERSION.in)-custom" | tee VERSION
+
+COPY OpenCue/rqd/setup.py ./rqd/
+COPY OpenCue/rqd/tests/ ./rqd/tests
+# Doing python test and install
+RUN cd rqd && python3.7 setup.py test
+RUN cd rqd && python3.7 setup.py install
 
 # --------------------------------------------------------------------
 # Removing cache
