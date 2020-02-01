@@ -50,14 +50,15 @@ RUN curl -O http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x
 # --------------------------------------------------------------------
 # Install Blender 2.80 and 2.79
 # --------------------------------------------------------------------
-WORKDIR /opt/blender
+WORKDIR /opt/blender2.80
 RUN curl -SL https://mirror.clarkson.edu/blender/release/Blender2.80/blender-2.80-linux-glibc217-x86_64.tar.bz2 \
         -o blender2.80.tar.bz2 && \
-    tar -jxvf blender2.80.tar.bz2 -C /opt/blender --strip-components=1 && \
+    tar -jxvf blender2.80.tar.bz2 --strip-components=1 && \
     rm blender2.80.tar.bz2
+WORKDIR /opt/blender2.79
 RUN curl -SL https://mirror.clarkson.edu/blender/release/Blender2.79/blender-2.79-linux-glibc219-x86_64.tar.bz2 \
         -o blender2.79.tar.bz2 && \
-    tar -jxvf blender2.79.tar.bz2 -C /opt/blender --strip-components=1 && \
+    tar -jxvf blender2.79.tar.bz2 --strip-components=1 && \
     rm blender2.79.tar.bz2
 
 # --------------------------------------------------------------------
