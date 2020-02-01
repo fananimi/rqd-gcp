@@ -56,14 +56,12 @@ RUN curl -SL \
     https://mirror.clarkson.edu/blender/release/Blender2.80/blender-2.80-linux-glibc217-x86_64.tar.bz2 \
     -o blender2.80.tar.bz2 && \
     tar -jxvf blender2.80.tar.bz2 && \
-    -C /opt/blender && \
     --strip-components=1 && \
     rm blender2.80.tar.bz2
 RUN curl -SL \
     BLENDER_BZ2_URL https://mirror.clarkson.edu/blender/release/Blender2.79/blender-2.79-linux-glibc219-x86_64.tar.bz2 \
     -o blender2.79.tar.bz2 && \
     tar -jxvf blender2.79.tar.bz2 && \
-    -C /opt/blender \
     --strip-components=1 && \
     rm blender2.79.tar.bz2
 
