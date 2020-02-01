@@ -36,6 +36,7 @@ RUN apt-get install \
     bzip2 \
     curl \
     gnupg2 \
+    time \
     python3.7 \
     python3.7-dev \
     python3-pip \
