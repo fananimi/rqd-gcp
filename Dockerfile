@@ -67,10 +67,11 @@ RUN curl -SL https://mirror.clarkson.edu/blender/release/Blender2.80/blender-2.8
 # blender2.81
 WORKDIR /opt/blender2.81
 COPY script/use_gpu.py ./
-RUN curl -SL https://mirror.clarkson.edu/blender/release/Blender2.81/blender-2.81-linux-glibc217-x86_64.tar.bz2 \
-        -o blender2.81.tar.bz2 && \
-    tar -jxvf blender2.81.tar.bz2 --strip-components=1 && \
-    rm blender2.81.tar.bz2
+COPY E_cycles_2.81a_lin.tar.bz2 ./
+RUN tar -jxvf E_cycles_2.81a_lin.tar.bz2 --strip-components=1 && \
+    mv E_cycles_2.81_v20191214_lin/* ./ && \
+    rm -rf E_cycles_2.81_v20191214_lin && \
+    rm E_cycles_2.81a_lin.tar.bz2
 
 # --------------------------------------------------------------------
 # Build rqd
