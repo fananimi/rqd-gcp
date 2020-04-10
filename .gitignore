@@ -4,6 +4,7 @@ env/
 __pycache__
 
 # operating system
+build/
 tmp/
 logs/
 *.DS_Store
