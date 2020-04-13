@@ -1,7 +1,7 @@
 # --------------------------------------------------------------------
 # BUILD
 # --------------------------------------------------------------------
-FROM ubuntu:latest
+FROM ubuntu:18.04
 
 RUN echo "starting build rqd client for Google Cloud Platform"
 
@@ -18,8 +18,6 @@ ENV NFS_SRC /shots
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install \
-        bzip2 \
-        curl \
         gnupg2 \
         time \
         python3.7 \
@@ -52,26 +50,19 @@ RUN curl -O http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x
 # --------------------------------------------------------------------
 # blender2.79
 WORKDIR /opt/blender2.79
-COPY script/use_gpu.py ./
-RUN curl -SL https://mirror.clarkson.edu/blender/release/Blender2.79/blender-2.79-linux-glibc219-x86_64.tar.bz2 \
-        -o blender2.79.tar.bz2 && \
-    tar -jxvf blender2.79.tar.bz2 --strip-components=1 && \
-    rm blender2.79.tar.bz2
+COPY build/blender/blender-2.79-linux-glibc219-x86_64.tar.bz2 .
+RUN tar -jxvf blender-2.79-linux-glibc219-x86_64.tar.bz2 --strip-components=1 && \
+    rm blender-2.79-linux-glibc219-x86_64.tar.bz2
 # blender2.80
 WORKDIR /opt/blender2.80
-COPY script/use_gpu.py ./
-RUN curl -SL https://mirror.clarkson.edu/blender/release/Blender2.80/blender-2.80-linux-glibc217-x86_64.tar.bz2 \
-        -o blender2.80.tar.bz2 && \
-    tar -jxvf blender2.80.tar.bz2 --strip-components=1 && \
-    rm blender2.80.tar.bz2
+COPY build/blender/blender-2.80-linux-glibc217-x86_64.tar.bz2 .
+RUN tar -jxvf blender-2.80-linux-glibc217-x86_64.tar.bz2 --strip-components=1 && \
+    rm blender-2.80-linux-glibc217-x86_64.tar.bz2
 # blender2.81
 WORKDIR /opt/blender2.81
-COPY script/use_gpu.py ./
-COPY E_cycles_2.81a_lin.tar.bz2 ./
-RUN tar -jxvf E_cycles_2.81a_lin.tar.bz2 --strip-components=1 && \
-    mv E_cycles_2.81_v20191214_lin/* ./ && \
-    rm -rf E_cycles_2.81_v20191214_lin && \
-    rm E_cycles_2.81a_lin.tar.bz2
+COPY build/blender/blender-2.81-linux-glibc217-x86_64.tar.bz2 .
+RUN tar -jxvf blender-2.81-linux-glibc217-x86_64.tar.bz2 --strip-components=1 && \
+    rm blender-2.81-linux-glibc217-x86_64.tar.bz2
 
 # --------------------------------------------------------------------
 # Build rqd
