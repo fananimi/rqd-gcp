@@ -26,6 +26,7 @@ build:
 	# docker-compose build $(SERVICE_TARGET)
 	mkdir -p build && \
 	bash download_blender.sh
+	bash download_cuda.sh
 
 clean:
 	# remove build directory
