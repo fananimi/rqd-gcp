@@ -9,8 +9,8 @@ RUN echo "starting build rqd client for Google Cloud Platform"
 # Global Environment
 # --------------------------------------------------------------------
 ENV NFS_IP localhost
-ENV NFS_DST /var/nfs/shots
-ENV NFS_SRC /shots
+ENV NFS_SRC /var/nfs/shots
+ENV NFS_DST /shots
 
 # --------------------------------------------------------------------
 # Install some dependencies
