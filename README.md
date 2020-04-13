@@ -7,7 +7,9 @@ This project aims to provide a docker container for Google Cloud Platform with G
 Usage
 -----
 ~~~~
-# dokcer build .
+# docker build -t gcr.io/$PROJECT_NAME/opencue/rqd:$TAG_NAME -f Dockerfile .
+# docker push gcr.io/$PROJECT_NAME/opencue/rqd:$TAG_NAME
+
 
 # docker run \
 -e CUEBOT_HOSTNAME=<CUEBOT_HOSTNAME> \
