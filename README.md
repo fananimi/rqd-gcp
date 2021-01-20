@@ -14,9 +14,6 @@ Usage
 
 # docker run \
 -e CUEBOT_HOSTNAME=<CUEBOT_HOSTNAME> \
--e NFS_IP=<NFS_IP> \
--e NFS_SRC=<NFS_SOURCE_DIR> \
--e NFS_DST=<NFS_DESTINATION_DIR> \
 -dit \
 --network host \
 --name rqd \

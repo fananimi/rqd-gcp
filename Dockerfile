@@ -8,9 +8,7 @@ RUN echo "starting build rqd client for Google Cloud Platform"
 # --------------------------------------------------------------------
 # Global Environment
 # --------------------------------------------------------------------
-ENV NFS_IP localhost
-ENV NFS_SRC /var/nfs/shots
-ENV NFS_DST /shots
+
 
 # --------------------------------------------------------------------
 # Install some dependencies
@@ -23,7 +21,6 @@ RUN apt-get update && \
         python3.7 \
         python3.7-dev \
         python3-pip \
-        nfs-common \
         libfreetype6 \
         libgl1-mesa-dev \
         libxi-dev \
