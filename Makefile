@@ -6,7 +6,7 @@
 # --------------------------------------------------------------------
 
 # all our targets are phony (no files to check).
-.PHONY: shell help build clean
+.PHONY: help build clean
 
 # suppress makes own output
 #.SILENT:
@@ -15,10 +15,8 @@
 help:
 	@echo ''
 	@echo 'Targets:'
-	@echo '  build    	build docker --image-- for current user: $(HOST_USER)(uid=$(HOST_UID))'
-	@echo '  test     	test docker --container-- for current user: $(HOST_USER)(uid=$(HOST_UID))'
-	@echo '  clean    	remove docker --image-- for current user: $(HOST_USER)(uid=$(HOST_UID))'
-	@echo '  shell      run docker --container-- for current user: $(HOST_USER)(uid=$(HOST_UID))'
+	@echo '  build    	build docker'
+	@echo '  clean    	clean cache'
 	@echo ''
 
 build:
@@ -27,6 +25,7 @@ build:
 	mkdir -p build && \
 	bash download_blender.sh
 	bash download_cuda.sh
+	docker buid .
 
 clean:
 	# remove build directory
