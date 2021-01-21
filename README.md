@@ -8,10 +8,11 @@ Usage
 -----
 ~~~~
 # make build
-# docker build -t gcr.io/$PROJECT_NAME/opencue/rqd:$TAG_NAME -f Dockerfile .
-# docker push gcr.io/$PROJECT_NAME/opencue/rqd:$TAG_NAME
+~~~~
 
-
+Create Container
+----------------
+~~~~
 # docker run \
 -e CUEBOT_HOSTNAME=<CUEBOT_HOSTNAME> \
 -e GCS_FUSE_BUCKET=<GCS_FUSE_BUCKET> \
@@ -24,7 +25,16 @@ Usage
 <IMAGE_ID>
 ~~~~
 
+Render Command
+--------------
+
+To use gpu rendering we must execute blender combine with `use_gpu.py`. Here the example command:
+
+~~~~
+/opt/blender2.81/blender -P /shots/use_gpu.py -b -noaudio /shots/barbershop_interior_cpu.blend -o /shots/renderimages/barbershop_interior_cpu.##### -F PNG -f 1
+~~~~
 
 Figure 1 - OpenCue Architecture
+--------------------------------
 
 ![](https://www.opencue.io/docs/images/opencue_architecture.svg)
