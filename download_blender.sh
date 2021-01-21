@@ -46,6 +46,21 @@ download_blender281() {
     fi
 }
 
+download_blender291() {
+    filepath="./build/blender/blender-2.91.2-linux64.tar.xz"
+    download=false
+    if test -f "$filepath"; then
+        if [ `md5sum "$filepath" | awk '{print $1}'` != "6d7efa1a76ce095d5afdf00a64ad2e7a" ]; then
+            download=true
+        fi
+    else
+        download=true
+    fi
+    if [ "$download" == true ] ; then
+        curl -SL "https://mirror.clarkson.edu/blender/release/Blender2.91/blender-2.91.2-linux64.tar.xz" -o "$filepath"
+    fi
+}
+
 main() {
     mkdir -p build/blender
     download_blender279
