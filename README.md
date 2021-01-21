@@ -31,8 +31,13 @@ Render Command
 To use gpu rendering we must execute blender combine with `use_gpu.py`. Here the example command:
 
 ~~~~
-/opt/blender2.81/blender -P /shots/use_gpu.py -b -noaudio /shots/barbershop_interior_cpu.blend -o /shots/renderimages/barbershop_interior_cpu.##### -F PNG -f 1
+/opt/blender2.91/blender -P /shots/use_gpu.py -b -noaudio /shots/barbershop_interior_cpu.blend -o /shots/renderimages/barbershop_interior_cpu.##### -F PNG -f 1
 ~~~~
+
+Future Update
+-------------
+
+To add a new blender version, you can follow the example on this commit [7781434](https://github.com/lithodomos/rqd-gcp/commit/7781434a4e546654dac806cbd1058e80bd33d7c2).
 
 Figure 1 - OpenCue Architecture
 --------------------------------
