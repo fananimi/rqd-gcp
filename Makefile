@@ -25,7 +25,7 @@ build:
 	mkdir -p build && \
 	bash download_blender.sh
 	bash download_cuda.sh
-	docker buid .
+	bash build_docker.sh
 
 clean:
 	# remove build directory
