@@ -31,7 +31,16 @@ Render Command
 To use gpu rendering we must execute blender combine with `use_gpu.py`. Here the example command:
 
 ~~~~
-/opt/blender2.91/blender -P /shots/use_gpu.py -b -noaudio /shots/barbershop_interior_cpu.blend -o /shots/renderimages/barbershop_interior_cpu.##### -F PNG -f 1
+/opt/blender2.91/blender -P /shots/use_gpu.py -b -noaudio /shots/barbershop_interior_gpu.blend -o /shots/renderimages/barbershop_interior_gpu.##### -F PNG -f 1
+~~~~
+
+Monitoring GPU Process
+----------------------
+
+To monitor the GPU rendering jobs, you can type command bellow.
+
+~~~~
+nvidia-smi --loop=5
 ~~~~
 
 Future Update
