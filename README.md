@@ -14,6 +14,7 @@ Usage
 
 # docker run \
 -e CUEBOT_HOSTNAME=<CUEBOT_HOSTNAME> \
+-e GCS_FUSE_BUCKET=<GCS_FUSE_BUCKET> \
 -dit \
 --network host \
 --name rqd \

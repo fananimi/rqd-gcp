@@ -8,7 +8,12 @@ RUN echo "starting build rqd client for Google Cloud Platform"
 # --------------------------------------------------------------------
 # Global Environment
 # --------------------------------------------------------------------
+# Update YOUR_BUCKET_NAME with the name of your bucket in the following line:
+# This variable is referenced in startup.sh
+ENV GCS_FUSE_BUCKET YOUR_BUCKET_NAME
 
+# This is the GCS bucket mount point on your Render Host. Referenced in startup.sh.sh
+ENV GCS_FUSE_MOUNT /shots
 
 # --------------------------------------------------------------------
 # Install some dependencies
@@ -16,6 +21,7 @@ RUN echo "starting build rqd client for Google Cloud Platform"
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install \
+        curl \
         gnupg2 \
         time \
         python3.7 \
@@ -30,6 +36,16 @@ RUN apt-get update && \
         libxrandr-dev \
         --no-install-recommends \
         -y
+
+# --------------------------------------------------------------------
+# Install gcs-fuse and google cloud SDK
+# --------------------------------------------------------------------
+RUN echo "deb http://packages.cloud.google.com/apt gcsfuse-bionic main" | tee /etc/apt/sources.list.d/gcsfuse.list
+RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+RUN apt-get update && \
+    apt-get install gcsfuse -y
+RUN echo "deb http://packages.cloud.google.com/apt cloud-sdk-bionic main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+RUN apt-get update && apt-get install google-cloud-sdk -y
 
 # --------------------------------------------------------------------
 # Install GPU Drivers
@@ -53,7 +69,6 @@ ENV LD_LIBRARY_PATH /usr/local/nvidia/lib:/usr/local/nvidia/lib64
 ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
 ENV NVIDIA_REQUIRE_CUDA "cuda>=10.2 brand=tesla,driver>=384,driver<385 brand=tesla,driver>=396,driver<397 brand=tesla,driver>=410,driver<411 brand=tesla,driver>=418,driver<419"
-
 
 # --------------------------------------------------------------------
 # Install Blender 2.79, 2.80, and 2.81
