@@ -108,7 +108,7 @@ RUN tar -xvf blender-2.91.2-linux64.tar.xz --strip-components=1 && \
 # Install Blender E Cycles version
 # --------------------------------------------------------------------
 # E_cycles2.82a
-WORKDIR /opt/E_cycles2.82a
+WORKDIR /opt
 COPY build/E_cycles/E_cycles_2.82a_v20200312_lin.tar.bz2 .
 RUN tar -jxvf E_cycles_2.82a_v20200312_lin.tar.bz2 --strip-components=1 && \
     rm E_cycles_2.82a_v20200312_lin.tar.bz2
