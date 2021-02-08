@@ -66,6 +66,7 @@ main() {
     download_blender279
     download_blender280
     download_blender281
+    download_blender291
 }
 
 main
