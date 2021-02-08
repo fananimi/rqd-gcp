@@ -71,7 +71,7 @@ ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
 ENV NVIDIA_REQUIRE_CUDA "cuda>=10.2 brand=tesla,driver>=384,driver<385 brand=tesla,driver>=396,driver<397 brand=tesla,driver>=410,driver<411 brand=tesla,driver>=418,driver<419"
 
 # --------------------------------------------------------------------
-# Install Blender 2.79, 2.80, 2.81, 2.82, and 2.91
+# Install Blender 2.79, 2.80, 2.81, 2.82, 2.82a and 2.91
 # --------------------------------------------------------------------
 # blender2.79
 WORKDIR /opt/blender2.79
@@ -93,6 +93,11 @@ WORKDIR /opt/blender2.82
 COPY build/blender/blender-2.82-linux64.tar.xz .
 RUN tar -xvf blender-2.82-linux64.tar.xz --strip-components=1 && \
     rm blender-2.82-linux64.tar.xz
+# blender2.82a
+WORKDIR /opt/blender2.82a
+COPY build/blender/blender-2.82a-linux64.tar.xz .
+RUN tar -xvf blender-2.82a-linux64.tar.xz --strip-components=1 && \
+    rm blender-2.82a-linux64.tar.xz
 # blender2.91
 WORKDIR /opt/blender2.91
 COPY build/blender/blender-2.91.2-linux64.tar.xz .

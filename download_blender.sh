@@ -61,6 +61,21 @@ download_blender282() {
     fi
 }
 
+download_blender282a() {
+    filepath="./build/blender/blender-2.82a-linux64.tar.xz"
+    download=false
+    if test -f "$filepath"; then
+        if [ `md5sum "$filepath" | awk '{print $1}'` != "816fb39f98a7e0c3ce1cc2bece9143e9" ]; then
+            download=true
+        fi
+    else
+        download=true
+    fi
+    if [ "$download" == true ] ; then
+        curl -SL "https://mirror.clarkson.edu/blender/release/Blender2.82/blender-2.82a-linux64.tar.xz" -o "$filepath"
+    fi
+}
+
 download_blender291() {
     filepath="./build/blender/blender-2.91.2-linux64.tar.xz"
     download=false
@@ -82,6 +97,7 @@ main() {
     download_blender280
     download_blender281
     download_blender282
+    download_blender282a
     download_blender291
 }
 
