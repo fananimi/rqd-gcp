@@ -23,6 +23,15 @@ if __name__ == '__main__':
             .communicate()
 
     # finally start the new rqd
-    subprocess.Popen('docker run -dt --name {name} {image_id}'.format(name=container_name, image_id=image_id), shell=True) \
-            .communicate()
-    
+    docker_run_cmd = '''docker run \
+-e CUEBOT_HOSTNAME={cuebot_hostname} \
+-e GCS_FUSE_BUCKET={bucket} \
+-dit \
+--network host \
+--name {container_name} \
+--gpus all \
+--privileged \
+--restart always \
+{image_id}
+'''.format(cuebot_hostname=cuebot_hostname, bucket=bucket, container_name=container_name, image_id=image_id)
+    subprocess.Popen(docker_run_cmd, shell=True).communicate()
