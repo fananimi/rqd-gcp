@@ -1,7 +1,7 @@
 # --------------------------------------------------------------------
 # BUILD
 # --------------------------------------------------------------------
-FROM ubuntu:18.04
+FROM nvidia/cuda:11.4.1-base-ubuntu18.04
 
 RUN echo "starting build rqd client for Google Cloud Platform"
 
@@ -46,29 +46,6 @@ RUN apt-get update && \
     apt-get install gcsfuse -y
 RUN echo "deb http://packages.cloud.google.com/apt cloud-sdk-bionic main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
 RUN apt-get update && apt-get install google-cloud-sdk -y
-
-# --------------------------------------------------------------------
-# Install GPU Drivers
-# --------------------------------------------------------------------
-# <https://cloud.google.com/compute/docs/gpus/install-drivers-gpu> for more info.
-COPY build/nvidia/cuda/cuda-repo-ubuntu1804_10.0.130-1_amd64.deb .
-RUN dpkg -i cuda-repo-ubuntu1804_10.0.130-1_amd64.deb && \
-    apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub && \
-    apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install cuda --no-install-recommends -y && \
-    rm cuda-repo-ubuntu1804_10.0.130-1_amd64.deb
-
-# Required for nvidia-docker v1
-RUN echo "/usr/local/nvidia/lib" >> /etc/ld.so.conf.d/nvidia.conf && \
-    echo "/usr/local/nvidia/lib64" >> /etc/ld.so.conf.d/nvidia.conf
-
-ENV PATH /usr/local/nvidia/bin:/usr/local/cuda/bin:${PATH}
-ENV LD_LIBRARY_PATH /usr/local/nvidia/lib:/usr/local/nvidia/lib64
-
-# nvidia-container-runtime
-ENV NVIDIA_VISIBLE_DEVICES all
-ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
-ENV NVIDIA_REQUIRE_CUDA "cuda>=10.2 brand=tesla,driver>=384,driver<385 brand=tesla,driver>=396,driver<397 brand=tesla,driver>=410,driver<411 brand=tesla,driver>=418,driver<419"
 
 # --------------------------------------------------------------------
 # Install Blender 2.79, 2.80, 2.81, 2.82, 2.82a, 2.91, and 2.93.3
