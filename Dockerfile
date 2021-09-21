@@ -71,7 +71,7 @@ ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
 ENV NVIDIA_REQUIRE_CUDA "cuda>=10.2 brand=tesla,driver>=384,driver<385 brand=tesla,driver>=396,driver<397 brand=tesla,driver>=410,driver<411 brand=tesla,driver>=418,driver<419"
 
 # --------------------------------------------------------------------
-# Install Blender 2.79, 2.80, 2.81, 2.82, 2.82a and 2.91
+# Install Blender 2.79, 2.80, 2.81, 2.82, 2.82a, 2.91 and 2.93.3 
 # --------------------------------------------------------------------
 # blender2.79
 WORKDIR /opt/blender2.79
@@ -103,6 +103,11 @@ WORKDIR /opt/blender2.91
 COPY build/blender/blender-2.91.2-linux64.tar.xz .
 RUN tar -xvf blender-2.91.2-linux64.tar.xz --strip-components=1 && \
     rm blender-2.91.2-linux64.tar.xz
+# blender2.93.3
+WORKDIR /opt/blender2.93
+COPY build/blender/blender-2.93.3-linux-x64.tar.xz .
+RUN tar -xvf blender-2.93.3-linux-x64.tar.xz --strip-components=1 && \
+    rm blender-2.93.3-linux-x64.tar.xz
 
 # --------------------------------------------------------------------
 # Install Blender E Cycles version
