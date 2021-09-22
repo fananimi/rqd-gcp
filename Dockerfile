@@ -18,9 +18,13 @@ ENV GCS_FUSE_MOUNT /shots
 # --------------------------------------------------------------------
 # Install some dependencies
 # --------------------------------------------------------------------
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install \
+        xz-utils \
+        build-essential \
+        apt-utils \
         curl \
         gnupg2 \
         time \
@@ -123,7 +127,7 @@ RUN test -e VERSION || echo "$(cat VERSION.in)-custom" | tee VERSION
 COPY OpenCue/rqd/setup.py ./rqd/
 COPY OpenCue/rqd/tests/ ./rqd/tests
 # Doing python test and install
-RUN cd rqd && python3.7 setup.py test
+# RUN cd rqd && python3.7 setup.py test
 RUN cd rqd && python3.7 setup.py install
 
 # --------------------------------------------------------------------
