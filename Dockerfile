@@ -52,43 +52,13 @@ RUN echo "deb http://packages.cloud.google.com/apt cloud-sdk-bionic main" | tee 
 RUN apt-get update && apt-get install google-cloud-sdk -y
 
 # --------------------------------------------------------------------
-# Install Blender 2.79, 2.80, 2.81, 2.82, 2.82a, 2.91, and 2.93.3
+# Install Blender 3.1.2 (only)
 # --------------------------------------------------------------------
-# blender2.79
-WORKDIR /opt/blender2.79
-COPY build/blender/blender-2.79-linux-glibc219-x86_64.tar.bz2 .
-RUN tar -jxvf blender-2.79-linux-glibc219-x86_64.tar.bz2 --strip-components=1 && \
-    rm blender-2.79-linux-glibc219-x86_64.tar.bz2
-# blender2.80
-WORKDIR /opt/blender2.80
-COPY build/blender/blender-2.80-linux-glibc217-x86_64.tar.bz2 .
-RUN tar -jxvf blender-2.80-linux-glibc217-x86_64.tar.bz2 --strip-components=1 && \
-    rm blender-2.80-linux-glibc217-x86_64.tar.bz2
-# blender2.81
-WORKDIR /opt/blender2.81
-COPY build/blender/blender-2.81-linux-glibc217-x86_64.tar.bz2 .
-RUN tar -jxvf blender-2.81-linux-glibc217-x86_64.tar.bz2 --strip-components=1 && \
-    rm blender-2.81-linux-glibc217-x86_64.tar.bz2
-# blender2.82
-WORKDIR /opt/blender2.82
-COPY build/blender/blender-2.82-linux64.tar.xz .
-RUN tar -xvf blender-2.82-linux64.tar.xz --strip-components=1 && \
-    rm blender-2.82-linux64.tar.xz
-# blender2.82a
-WORKDIR /opt/blender2.82a
-COPY build/blender/blender-2.82a-linux64.tar.xz .
-RUN tar -xvf blender-2.82a-linux64.tar.xz --strip-components=1 && \
-    rm blender-2.82a-linux64.tar.xz
-# blender2.91
-WORKDIR /opt/blender2.91
-COPY build/blender/blender-2.91.2-linux64.tar.xz .
-RUN tar -xvf blender-2.91.2-linux64.tar.xz --strip-components=1 && \
-    rm blender-2.91.2-linux64.tar.xz
-# blender2.93.3
-WORKDIR /opt/blender2.93
-COPY build/blender/blender-2.93.3-linux-x64.tar.xz .
-RUN tar -xvf blender-2.93.3-linux-x64.tar.xz --strip-components=1 && \
-    rm blender-2.93.3-linux-x64.tar.xz
+# blender3.1.2
+WORKDIR /opt/blender3.1.2
+COPY build/blender/blender-3.1.2-linux-x64.tar.xz .
+RUN tar -xvf blender-3.1.2-linux-x64.tar.xz --strip-components=1 && \
+    rm blender-3.1.2-linux-x64.tar.xz
 
 # --------------------------------------------------------------------
 # Build rqd
