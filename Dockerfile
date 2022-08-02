@@ -28,8 +28,8 @@ RUN apt-get update && \
         curl \
         gnupg2 \
         time \
-        python3.7 \
-        python3.7-dev \
+        python3 \
+        python3-dev \
         python3-pip \
         libfreetype6 \
         libgl1-mesa-dev \
@@ -64,13 +64,13 @@ RUN tar -xvf blender-3.1.2-linux-x64.tar.xz --strip-components=1 && \
 # Build rqd
 # --------------------------------------------------------------------
 WORKDIR /opt/opencue
-RUN python3.7 -m pip install setuptools
-RUN python3.7 -m pip install wheel
+RUN python3 -m pip install setuptools
+RUN python3 -m pip install wheel
 COPY OpenCue/requirements.txt ./
-RUN python3.7 -m pip install -r requirements.txt
+RUN python3 -m pip install -r requirements.txt
 COPY OpenCue/proto/ ./proto
 COPY OpenCue/rqd/rqd/ ./rqd/rqd
-RUN python3.7 -m grpc_tools.protoc \
+RUN python3 -m grpc_tools.protoc \
         -I=./proto \
         --python_out=./rqd/rqd/compiled_proto \
         --grpc_python_out=./rqd/rqd/compiled_proto \
@@ -88,8 +88,8 @@ RUN test -e VERSION || echo "$(cat VERSION.in)-custom" | tee VERSION
 COPY OpenCue/rqd/setup.py ./rqd/
 COPY OpenCue/rqd/tests/ ./rqd/tests
 # Doing python test and install
-# RUN cd rqd && python3.7 setup.py test
-RUN cd rqd && python3.7 setup.py install
+# RUN cd rqd && python3 setup.py test
+RUN cd rqd && python3 setup.py install
 
 # --------------------------------------------------------------------
 # Removing cache
