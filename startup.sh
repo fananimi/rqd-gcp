@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-mkdir -p $GCS_FUSE_MOUNT
-gcsfuse --implicit-dirs -o rw,allow_other --uid 1000 --gid 1000 --dir-mode 777 --file-mode 777 $GCS_FUSE_BUCKET $GCS_FUSE_MOUNT
+sudo mkdir -p /shots
 
-/bin/bash -c set -e && rqd
+if [ -z "$(ls -A /shots)" ]; then
+   sudo gcsfuse --implicit-dirs -o rw,allow_other --uid 1000 --gid 1000 --dir-mode 777 --file-mode 777 hompimpa-render /shots
+else
+   echo "Storage mounted!"
+fi
